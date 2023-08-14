@@ -1,0 +1,5 @@
+resources:
+- database
+- backend
+- frontend
+namePrefix: demo-
