@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-frontend
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: app-frontend
+          image: frontend:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: REACT_APP_BACKEND
+              value: backend.default.svc.cluster.local
+          ports:
+            - containerPort: 80
+              name: http
+
