@@ -9,6 +9,8 @@ database:
   name: postgres
   secretname: dummy3tier-backend
 replicas: 1
-appdebug:
-  level: info
-  backtrace: 0
+application:
+  debug:
+    level: debug
+    backtrace: 0
+  port: 8000

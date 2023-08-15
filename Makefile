@@ -70,3 +70,10 @@ undeploy-backend-k3s-helm:
 	helm uninstall dummy3tier-be
 undeploy-db-k3s-helm:
 	helm uninstall dummy3tier-db
+
+# COMPOSE Deploy
+.PHONY: composeup composedown
+composeup:
+	docker-compose -f ${APP_DIR}/compose.yaml up
+composedown:
+	docker-compose -f ${APP_DIR}/compose.yaml down

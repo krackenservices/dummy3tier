@@ -22,9 +22,9 @@ spec:
             - name: ADDRESS
               value: 0.0.0.0:8000
             - name: RUST_LOG
-              value: {{ .Values.appdebug.level }}
+              value: {{ .Values.application.debug.level }}
             - name: RUST_BACKTRACE
-              value: {{ .Values.appdebug.backtrace | quote}}
+              value: {{ .Values.application.debug.backtrace | quote}}
             - name: PG_DBNAME
               value: {{ .Values.database.name }}
             - name: PG_HOST
@@ -40,6 +40,6 @@ spec:
                   name: {{ .Values.database.secretname }}
                   key: password
           ports:
-            - containerPort: 80
+            - containerPort: {{ .Values.application.port }}
               name: http
 

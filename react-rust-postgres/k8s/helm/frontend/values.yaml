@@ -9,3 +9,4 @@ replicas: 1
 middleware:
   service:
     name: dummy3tier-backend
+    port: "8000"
