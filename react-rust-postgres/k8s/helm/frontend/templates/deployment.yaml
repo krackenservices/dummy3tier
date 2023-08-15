@@ -20,7 +20,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullpolicy }}
           env:
             - name: REACT_APP_BACKEND
-              value:  {{ .Values.middleware.uri }}
+              value:  {{ template "middleware.uri" . }}
           ports:
             - containerPort: 80
               name: http

@@ -22,11 +22,13 @@ spec:
             - name: ADDRESS
               value: 0.0.0.0:8000
             - name: RUST_LOG
-              value: info
+              value: {{ .Values.appdebug.level }}
+            - name: RUST_BACKTRACE
+              value: {{ .Values.appdebug.backtrace | quote}}
             - name: PG_DBNAME
               value: {{ .Values.database.name }}
             - name: PG_HOST
-              value: {{ .Values.database.uri }}
+              value: {{ template "database.uri" . }}
             - name: PG_USER
               valueFrom:
                 secretKeyRef:

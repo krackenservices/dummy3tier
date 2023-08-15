@@ -7,4 +7,5 @@ database:
   secretname: dummy3tier-frontend
 replicas: 1
 middleware:
-  uri: backend.default.svc.cluster.local
+  service:
+    name: dummy3tier-backend

@@ -4,7 +4,11 @@ image:
   tag: latest
   pullpolicy: IfNotPresent
 database:
+  service:
+    name: dummy3tier-database
   name: postgres
-  uri: database.default.svc.cluster.local
   secretname: dummy3tier-backend
 replicas: 1
+appdebug:
+  level: info
+  backtrace: 0
