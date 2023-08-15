@@ -1,0 +1,8 @@
+appname: dummy3tier-database
+image: 
+  name: postgres
+  tag: 12-alpine
+  pullpolicy: IfNotPresent
+database:
+  secretname: dummy3tier-database
+replicas: 1

@@ -1,0 +1,10 @@
+appname: dummy3tier-frontend
+image: 
+  name: frontend
+  tag: latest
+  pullpolicy: IfNotPresent
+database:
+  secretname: dummy3tier-frontend
+replicas: 1
+middleware:
+  uri: backend.default.svc.cluster.local

@@ -1,0 +1,10 @@
+appname: dummy3tier-backend
+image: 
+  name: backend
+  tag: latest
+  pullpolicy: IfNotPresent
+database:
+  name: postgres
+  uri: database.default.svc.cluster.local
+  secretname: dummy3tier-backend
+replicas: 1
