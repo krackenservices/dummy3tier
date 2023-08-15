@@ -1,7 +1,16 @@
 BACKEND_IMG ?= backend:latest
 FRONTEND_IMG ?= frontend:latest
 
-CONTAINER_TOOL ?= nerdctl
+CONTAINER_TOOL ?= docker
+#CONTAINER_TOOL ?= nerdctl
+
+USING_RANCHER ?= true 
+ifeq (${CONTAINER_TOOL}, "nerdctl")
+ifeq (${USING_RANCHER})
+NERDARGS := --namespace k8s.io
+endif
+endif
+
 APP_DIR ?= react-rust-postgres
 
 SHELL = /usr/bin/env bash -o pipefail
@@ -13,11 +22,11 @@ build: build-backend build-frontend
 
 build-backend: build-backend-k3s
 build-backend-k3s:
-	$(CONTAINER_TOOL) --namespace k8s.io build -t ${BACKEND_IMG} ${APP_DIR}/backend
+	$(CONTAINER_TOOL) ${NERDARGS} build -t ${BACKEND_IMG} ${APP_DIR}/backend
 
 build-frontend: build-frontend-k3s
 build-frontend-k3s:
-	$(CONTAINER_TOOL) --namespace k8s.io build -t ${FRONTEND_IMG} ${APP_DIR}/frontend
+	$(CONTAINER_TOOL) ${NERDARGS} build -t ${FRONTEND_IMG} ${APP_DIR}/frontend
 
 # KUSTOMIZE Deploy
 .PHONY: deploy-k3s-kustomize deploy-backend-k3s-kustomize deploy-frontend-k3s-kustomize deploy-db-k3s-kustomize
